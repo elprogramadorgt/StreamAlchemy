@@ -12,4 +12,9 @@ func GinRoutes(engine *gin.Engine) {
 		health.GET("", handlers.GetHealthCheckHandler)
 	}
 
+	scenes := engine.Group("/scene")
+	{
+		scenes.POST("", handlers.ChangeSceneHandler)
+	}
+
 }

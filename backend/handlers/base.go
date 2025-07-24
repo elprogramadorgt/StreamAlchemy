@@ -1,6 +1,8 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 )
@@ -12,5 +14,6 @@ func defaultResponse(ctx *gin.Context, response interface{}, err error) {
 		ctx.JSON(500, gin.H{"error": "something went wrong"})
 		return
 	}
-	ctx.JSON(200, response)
+
+	ctx.JSON(http.StatusOK, response)
 }
