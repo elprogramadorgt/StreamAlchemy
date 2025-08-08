@@ -14,7 +14,14 @@ func GinRoutes(engine *gin.Engine) {
 
 	scenes := engine.Group("/scene")
 	{
+		scenes.GET("", handlers.GetScenesHandler)
 		scenes.POST("", handlers.ChangeSceneHandler)
+		scenes.POST("/activate-item", handlers.SetSceneItemVisibilityHandler)
+	}
+
+	resource := engine.Group("/resource")
+	{
+		resource.GET("", handlers.GetResourceHandler)
 	}
 
 }
