@@ -8,8 +8,13 @@ type AuthIdentifyOp struct {
 	RpcVersion int `json:"rpcVersion"`
 }
 
+///TODO: it will require to send SceneItemEnabled on other endpoints so be aware
+
 type RequestData struct {
-	SceneName string `json:"sceneName"`
+	SceneName        string `json:"sceneName,omitempty"`
+	SourceName       string `json:"sourceName,omitempty"`
+	SceneItemId      int    `json:"sceneItemId,omitempty"`
+	SceneItemEnabled bool   `json:"sceneItemEnabled"`
 }
 
 type RequestOp struct {
