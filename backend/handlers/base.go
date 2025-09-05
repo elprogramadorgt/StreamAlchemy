@@ -9,9 +9,8 @@ import (
 
 func defaultResponse(ctx *gin.Context, response interface{}, err error) {
 	if err != nil {
-
 		logrus.Error("Error in response: ", err)
-		ctx.JSON(500, gin.H{"error": "something went wrong"})
+		ctx.Error(err)
 		return
 	}
 

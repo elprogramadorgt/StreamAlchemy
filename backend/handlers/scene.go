@@ -1,7 +1,10 @@
 package handlers
 
 import (
+	"net/http"
+
 	"github.com/elprogramadorgt/StreamAlchemy/controllers"
+	"github.com/elprogramadorgt/StreamAlchemy/models"
 	model_request "github.com/elprogramadorgt/StreamAlchemy/models/scene"
 	"github.com/gin-gonic/gin"
 )
@@ -9,8 +12,10 @@ import (
 func ChangeSceneHandler(ctx *gin.Context) {
 	var request model_request.SceneRequest
 	if err := ctx.ShouldBindJSON(&request); err != nil {
-
-		ctx.JSON(400, gin.H{"error": err.Error()})
+		ctx.Error(&models.BaseError{
+			Code:    http.StatusBadRequest,
+			Message: err.Error(),
+		})
 		return
 	}
 
@@ -30,7 +35,10 @@ func GetScenesHandler(ctx *gin.Context) {
 func SetSceneItemVisibilityHandler(ctx *gin.Context) {
 	var request model_request.SceneItemRequest
 	if err := ctx.ShouldBindJSON(&request); err != nil {
-		ctx.JSON(400, gin.H{"error": err.Error()})
+		ctx.Error(&models.BaseError{
+			Code:    http.StatusBadRequest,
+			Message: err.Error(),
+		})
 		return
 	}
 

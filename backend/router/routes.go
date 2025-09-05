@@ -2,11 +2,12 @@ package router
 
 import (
 	"github.com/elprogramadorgt/StreamAlchemy/handlers"
+	"github.com/elprogramadorgt/StreamAlchemy/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func GinRoutes(engine *gin.Engine) {
-
+	engine.Use(middleware.ErrorMiddleware())
 	health := engine.Group("/healthcheck")
 	{
 		health.GET("", handlers.GetHealthCheckHandler)
@@ -23,5 +24,4 @@ func GinRoutes(engine *gin.Engine) {
 	{
 		resource.GET("", handlers.GetResourceHandler)
 	}
-
 }
